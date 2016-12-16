@@ -55,3 +55,4 @@ CONFIG(release, debug|release) {
 #  LIBS+= -lefence
   CONFIG += optimize_full
 }
+
