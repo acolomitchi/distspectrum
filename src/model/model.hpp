@@ -149,25 +149,9 @@ private:
 //   of the point stored at position `i`
 template <
   class Supplier,
-  typename C, size_t DIM=2,
-  typename index_type=uint32_t
+  typename C, size_t DIM=2
 >
 class bound_npoint_cloud {
-private:
-  struct suppl_entry {
-    const Supplier* supplier_;
-    mutable std::vector<index_type> indices_; // within bound indices
-    mutable bool inited_;
-
-    suppl_entry(const Supplier* supplier) :
-      supplier_(supplier), indices_(), inited_(false)
-    {
-      if(supplier->size()>std::numeric_limits<index_type>::max()) {
-        throw std::invalid_argument("Too many points, can't index it");
-      }
-    }
-  };
-
 public:
   bound_npoint_cloud() = default;
 
@@ -253,11 +237,10 @@ protected:
     }
   }
 
-
   size_t index_of(const Supplier* supplier) const {
     for(size_t i=0; i<this->suppliers_.size(); i++) {
-      const suppl_entry& e=this->suppliers_[i];
-      if(e.supplier_==supplier) {
+      const auto& e=this->suppliers_[i];
+      if(e==supplier) {
         return i;
       }
     }
@@ -272,10 +255,9 @@ private:
 
 template <
   class Supplier,
-  typename C, size_t DIM=2,
-  typename index_type=uint32_t
+  typename C, size_t DIM=2
 >
-class bbox_npoint_cloud : public bound_npoint_cloud<Supplier, C, DIM, index_type> {
+class bbox_npoint_cloud : public bound_npoint_cloud<Supplier, C, DIM> {
 public:
   bbox_npoint_cloud(
     const npoint<C,DIM>& boxMins,

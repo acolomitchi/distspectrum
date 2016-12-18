@@ -30,20 +30,6 @@ assign(distspctr::npoint<C,2>& dest, const QPointF& src) {
   return src;
 }
 
-template <typename C> struct qtransf_adapter {
-  const QTransform * trn_;
-
-  distspctr::npoint<C,2> map(const distspctr::npoint<C,2>& p) const {
-    distspctr::npoint<C,2> ret=p;
-    if( this->trn_) {
-      QPointF val;
-      assign(val, p);
-      val=this->trn_->map(val);
-      assign(ret, val);
-    }
-    return ret;
-  }
-};
 
 template <typename C> QPolygonF& assign(QPolygonF& dest, const distspctr::npoint_grp<C,2>& src) {
   QPointF val;
