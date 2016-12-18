@@ -3,6 +3,8 @@
 
 ### Brief
 
+[Wiki](https://github.com/acolomitchi/distspectrum/wiki) has pictures.
+
 1. **What** a Qt application which displays the distribution of distances between 
     random points inside a unit square. 
   * allows the generation of random point clusters - uniform distribution in a square or 
@@ -11,7 +13,7 @@
     transforn from the tip-of-the-mouse pointer
 
 2. **Why**: machine learning usually involves clustering. If you know how many clusters to seek,
-     the problem is simpler than when you don't.
+     the problem is simpler than when you don't.<br>
      I wanted a tool to explore what a computer would "see" if examining only the distribution
      of distances, perhaps such information may be used to in separatings clusters.
      That is to say, this is rather a toy for a human mind (mine) to explore a bit the problem
